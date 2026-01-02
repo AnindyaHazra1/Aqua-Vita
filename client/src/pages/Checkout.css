@@ -1,0 +1,376 @@
+/* Checkout Page Styling */
+.checkout-container {
+    padding-top: 100px;
+    /* Space for fixed navbar */
+    min-height: 100vh;
+    background-color: #0F172A;
+    color: #F8FAFC;
+    padding-bottom: 4rem;
+}
+
+.checkout-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+/* Left Column */
+.checkout-main h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #C5A059;
+}
+
+.checkout-section {
+    background: #1E293B;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.section-head h3 {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: #F8FAFC;
+}
+
+/* Address Grid */
+.address-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.address-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 1rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.address-card:hover {
+    border-color: #C5A059;
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.address-card.selected {
+    border-color: #C5A059;
+    background: rgba(197, 160, 89, 0.1);
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+}
+
+.address-card h4 {
+    margin: 0 0 0.5rem 0;
+    color: #F8FAFC;
+    font-family: 'Inter', sans-serif;
+}
+
+.address-card p {
+    margin: 0 0 0.3rem 0;
+    color: #94A3B8;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.check-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.add-address-btn {
+    background: transparent;
+    border: 2px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #94A3B8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 2rem;
+    transition: all 0.2s;
+    min-height: 150px;
+}
+
+.add-address-btn:hover {
+    border-color: #C5A059;
+    color: #C5A059;
+    background: rgba(197, 160, 89, 0.05);
+}
+
+.add-address-btn span {
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+
+/* Payment Options */
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.payment-option:hover {
+    border-color: #C5A059;
+}
+
+.payment-option.selected {
+    border-color: #C5A059;
+    background: rgba(197, 160, 89, 0.1);
+}
+
+.radio-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #64748B;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.payment-option.selected .radio-circle {
+    border-color: #C5A059;
+}
+
+.payment-option.selected .radio-circle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #C5A059;
+    border-radius: 50%;
+}
+
+
+/* Summary Column */
+.checkout-summary {
+    background: #1E293B;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.checkout-summary h3 {
+    font-family: 'Playfair Display', serif;
+    color: #F8FAFC;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-items {
+    margin-bottom: 2rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.summary-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.summary-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: #0B1121;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.item-info h4 {
+    margin: 0 0 0.3rem 0;
+    color: #F8FAFC;
+    font-size: 0.95rem;
+}
+
+.item-info p {
+    margin: 0;
+    color: #94A3B8;
+    font-size: 0.85rem;
+}
+
+.price-breakdown {
+    margin-bottom: 2rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    color: #CBD5E1;
+    font-size: 0.95rem;
+}
+
+.price-row.total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 700;
+    color: #C5A059;
+    font-size: 1.2rem;
+}
+
+.place-order-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #C5A059 0%, #B8860B 100%);
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.place-order-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+}
+
+.place-order-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}
+
+/* Modal Popup */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-content {
+    background: #1E293B;
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    border: 1px solid #C5A059;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+}
+
+.popup-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.popup-content h3 {
+    font-family: 'Playfair Display', serif;
+    color: #C5A059;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.popup-content p {
+    color: #CBD5E1;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.popup-content button {
+    background: transparent;
+    border: 1px solid #C5A059;
+    color: #C5A059;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.popup-content button:hover {
+    background: #C5A059;
+    color: #000;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .checkout-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-summary {
+        position: static;
+        order: -1;
+        /* Show summary first on mobile? Or last? Usually last is better for flow */
+        order: 1;
+    }
+}

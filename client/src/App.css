@@ -1,0 +1,17 @@
+/* App level styles */
+.app-container {
+    /* Ensure content doesn't get hidden behind fixed navbar */
+    position: relative;
+    /* Add a subtle fade-in for page transitions if I add routing animation later */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
