@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import API_URL from '../config';
+import { useToast } from '../context/ToastContext';
 import './Profile.css';
 import { User, Package, Settings, CreditCard, Heart, LogOut, ChevronRight, LayoutDashboard, Trash2, Edit } from 'lucide-react';
 
 const Profile = ({ addToCart }) => {
     const authContext = useContext(AuthContext);
     const { user, isAuthenticated, loading, logout, loadUser } = authContext; // Ensure loadUser is available
+    const { showToast } = useToast();
     const navigate = useNavigate();
 
     const [activeTab, setActiveTab] = useState('info'); // info, orders, addresses
@@ -51,7 +54,7 @@ const Profile = ({ addToCart }) => {
     // Handlers for Payments
     const handleSaveCard = async () => {
         if (!newCard.cardNumber || !newCard.holderName || !newCard.expiry) {
-            alert('Please fill all card details');
+            showToast('Please fill all card details', 'error');
             return;
         }
         const currentCards = user.savedCards || [];
@@ -60,7 +63,7 @@ const Profile = ({ addToCart }) => {
         if (success) {
             setShowCardForm(false);
             setNewCard({ cardNumber: '', holderName: '', expiry: '', cardType: 'Visa' });
-            alert('Card Saved Successfully');
+            showToast('Card Saved Successfully', 'success');
         }
     };
 
@@ -73,7 +76,7 @@ const Profile = ({ addToCart }) => {
 
     const handleSaveUpi = async () => {
         if (!newUpi.vpa) {
-            alert('Please enter VPA');
+            showToast('Please enter VPA', 'error');
             return;
         }
         const currentUpi = user.upiIds || [];
@@ -82,7 +85,8 @@ const Profile = ({ addToCart }) => {
         if (success) {
             setShowUpiForm(false);
             setNewUpi({ vpa: '', bankName: '' });
-            alert('UPI Saved Successfully');
+            setNewUpi({ vpa: '', bankName: '' });
+            showToast('UPI Saved Successfully', 'success');
         }
     };
 
@@ -95,7 +99,7 @@ const Profile = ({ addToCart }) => {
 
     const handleSaveGiftCard = async () => {
         if (!newGiftCard.code || !newGiftCard.pin) {
-            alert('Please enter Gift Card Number and PIN');
+            showToast('Please enter Gift Card Number and PIN', 'error');
             return;
         }
         const currentGiftCards = user.giftCards || [];
@@ -104,7 +108,8 @@ const Profile = ({ addToCart }) => {
         if (success) {
             setShowGiftCardForm(false);
             setNewGiftCard({ code: '', pin: '' });
-            alert('Gift Card Added Successfully');
+            setNewGiftCard({ code: '', pin: '' });
+            showToast('Gift Card Added Successfully', 'success');
         }
     };
 
@@ -133,6 +138,13 @@ const Profile = ({ addToCart }) => {
         }
     }, [user]);
 
+    // Redirect if not authenticated
+    useEffect(() => {
+        if (!loading && !isAuthenticated) {
+            navigate('/login');
+        }
+    }, [loading, isAuthenticated, navigate]);
+
     // Fetch Orders when tab changes
     useEffect(() => {
         if (activeTab === 'orders' && isAuthenticated) {
@@ -143,7 +155,7 @@ const Profile = ({ addToCart }) => {
     const fetchOrders = async () => {
         setOrdersLoading(true);
         try {
-            const res = await fetch('http://localhost:5000/api/orders', {
+            const res = await fetch(`${API_URL}/orders`, {
                 headers: { 'x-auth-token': localStorage.getItem('token') }
             });
             const data = await res.json();
@@ -167,7 +179,7 @@ const Profile = ({ addToCart }) => {
                 ...updatedFields // Allow overriding/adding fields like addresses
             };
 
-            const res = await fetch('http://localhost:5000/api/auth/update', {
+            const res = await fetch(`${API_URL}/auth/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -191,9 +203,9 @@ const Profile = ({ addToCart }) => {
         const success = await handleUpdateProfile();
         if (success) {
             setEditInfo(false);
-            alert('Profile Updated Successfully');
+            showToast('Profile Updated Successfully', 'success');
         } else {
-            alert('Failed to update profile');
+            showToast('Failed to update profile', 'error');
         }
     };
 
@@ -205,7 +217,7 @@ const Profile = ({ addToCart }) => {
 
     const handleSaveAddress = async () => {
         if (!newAddress.name || !newAddress.mobile || !newAddress.pincode || !newAddress.address) {
-            alert('Please fill all required fields');
+            showToast('Please fill all required fields', 'error');
             return;
         }
 
@@ -226,9 +238,9 @@ const Profile = ({ addToCart }) => {
             setNewAddress({
                 name: '', mobile: '', pincode: '', locality: '', address: '', city: '', state: '', addressType: 'Home'
             });
-            alert(editingAddressIndex >= 0 ? 'Address Updated Successfully' : 'Address Saved Successfully');
+            showToast(editingAddressIndex >= 0 ? 'Address Updated Successfully' : 'Address Saved Successfully', 'success');
         } else {
-            alert('Failed to save address');
+            showToast('Failed to save address', 'error');
         }
     };
 
@@ -247,9 +259,9 @@ const Profile = ({ addToCart }) => {
 
             const success = await handleUpdateProfile({ addresses: updatedAddresses });
             if (success) {
-                alert('Address Deleted Successfully');
+                showToast('Address Deleted Successfully', 'info');
             } else {
-                alert('Failed to delete address');
+                showToast('Failed to delete address', 'error');
             }
         }
     };

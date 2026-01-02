@@ -15,7 +15,10 @@ app.use(express.json());
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/premium_water';
 
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB'))
+  .then(() => {
+    console.log('Connected to MongoDB');
+    console.log('Active DB:', MONGODB_URI.includes('localhost') || MONGODB_URI.includes('127.0.0.1') ? 'Local (Compass)' : 'Cloud (Atlas)');
+  })
   .catch(err => {
     console.warn('MongoDB Connection Failed:', err.message);
     console.warn('Running in disconnected mode. content may be limited.');

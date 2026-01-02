@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import { MapPin, CreditCard, Gift, Truck, CheckCircle } from 'lucide-react';
+import { useToast } from '../context/ToastContext';
 import './Checkout.css';
 
 const Checkout = ({ cart, clearCart }) => {
     const { user, isAuthenticated, loadUser } = useContext(AuthContext);
+    const { showToast } = useToast();
     const navigate = useNavigate();
 
     const [selectedAddressIndex, setSelectedAddressIndex] = useState(0);
@@ -43,7 +45,7 @@ const Checkout = ({ cart, clearCart }) => {
 
     const handlePlaceOrder = () => {
         if (!user.addresses || user.addresses.length === 0) {
-            alert('Please add a delivery address first!');
+            showToast('Please add a delivery address first!', 'error');
             navigate('/profile');
             return;
         }

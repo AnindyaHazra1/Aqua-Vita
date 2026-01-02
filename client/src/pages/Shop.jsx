@@ -1,17 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { Plus, Heart } from 'lucide-react';
 import AuthContext from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
+import API_URL from '../config';
 import './Shop.css';
 
 const Shop = ({ addToCart }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
     const { user, loadUser, isAuthenticated } = useContext(AuthContext);
+    const { showToast } = useToast();
+
 
     useEffect(() => {
         // Fetch products from the backend
-        fetch('http://localhost:5000/api/products')
+        fetch(`${API_URL}/products`)
             .then(res => {
                 if (!res.ok) throw new Error('Failed to fetch products');
                 return res.json();
@@ -29,7 +34,7 @@ const Shop = ({ addToCart }) => {
 
     const toggleWishlist = async (product) => {
         if (!isAuthenticated) {
-            alert('Please login to add items to wishlist');
+            showToast('Please login to add items to wishlist', 'info');
             return;
         }
 
@@ -40,6 +45,8 @@ const Shop = ({ addToCart }) => {
         if (isWishlisted) {
             // Remove from wishlist
             updatedWishlist = currentWishlist.filter(item => item.productId !== product._id);
+            showToast('Removed from Wishlist', 'info');
+
         } else {
             // Add to wishlist
             updatedWishlist = [...currentWishlist, {
@@ -51,7 +58,7 @@ const Shop = ({ addToCart }) => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/auth/update', {
+            const res = await fetch(`${API_URL}/auth/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,8 +69,9 @@ const Shop = ({ addToCart }) => {
 
             if (res.ok) {
                 loadUser(); // Refresh user state to reflect changes
+                if (!isWishlisted) showToast('Added to Wishlist', 'success');
             } else {
-                alert('Failed to update wishlist');
+                showToast('Failed to update wishlist', 'error');
             }
         } catch (err) {
             console.error('Error updating wishlist:', err);

@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react';
+import API_URL from '../config';
 
 const initialState = {
     token: localStorage.getItem('token'),
@@ -63,7 +64,7 @@ export const AuthProvider = ({ children }) => {
     const loadUser = async () => {
         if (localStorage.token) {
             try {
-                const res = await fetch('http://localhost:5000/api/auth/me', {
+                const res = await fetch(`${API_URL}/auth/me`, {
                     headers: {
                         'x-auth-token': localStorage.token
                     }
@@ -90,7 +91,7 @@ export const AuthProvider = ({ children }) => {
     const register = async (formData) => {
         dispatch({ type: 'SET_LOADING' });
         try {
-            const res = await fetch('http://localhost:5000/api/auth/register', {
+            const res = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -116,7 +117,7 @@ export const AuthProvider = ({ children }) => {
     const login = async (formData) => {
         dispatch({ type: 'SET_LOADING' });
         try {
-            const res = await fetch('http://localhost:5000/api/auth/login', {
+            const res = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

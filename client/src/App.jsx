@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import API_URL from './config'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
@@ -16,6 +17,7 @@ import Shipping from './pages/Shipping'
 import Returns from './pages/Returns'
 import ChatBot from './components/ChatBot'
 import AuthContext, { AuthProvider } from './context/AuthContext'
+import { ToastProvider } from './context/ToastContext'
 import './App.css'
 import './Premium.css'
 
@@ -61,7 +63,7 @@ function AppContent() {
 
                     console.log('Saving cart to DB:', cartToSave);
 
-                    await fetch('http://localhost:5000/api/auth/update', {
+                    await fetch(`${API_URL}/auth/update`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json',
@@ -152,9 +154,11 @@ function AppContent() {
 function App() {
     return (
         <AuthProvider>
-            <Router>
-                <AppContent />
-            </Router>
+            <ToastProvider>
+                <Router>
+                    <AppContent />
+                </Router>
+            </ToastProvider>
         </AuthProvider>
     )
 }
