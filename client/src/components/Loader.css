@@ -1,0 +1,133 @@
+/* Water Loader Animation */
+.loader-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: url(#goo);
+}
+
+.drop {
+    width: 150px;
+    height: 150px;
+    background: #4fc3f7;
+    /* Light Blue */
+    position: absolute;
+    border-radius: 50%;
+    animation: drop-animate 2.5s ease-in-out infinite;
+    box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.05),
+        15px 25px 10px rgba(0, 0, 0, 0.1),
+        15px 20px 20px rgba(0, 0, 0, 0.05),
+        inset -10px -10px 15px rgba(255, 255, 255, 0.9);
+}
+
+.drop::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 35px;
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.drop::after {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 65px;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.wave {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0288d1;
+    /* Darker Blue */
+    border-radius: 50%;
+    animation: wave-animate 2.5s ease-in-out infinite;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+@keyframes drop-animate {
+
+    0%,
+    100% {
+        border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+        transform: translateY(0);
+    }
+
+    50% {
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes wave-animate {
+
+    0%,
+    100% {
+        transform: scale(0.9);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.loading-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #0277bd;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.loading-subtext {
+    font-family: 'Inter', sans-serif;
+    color: #546e7a;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    max-width: 320px;
+    line-height: 1.5;
+}
+
+.retry-btn {
+    margin-top: 25px;
+    padding: 10px 24px;
+    background: white;
+    border: 2px solid #0288d1;
+    color: #0288d1;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(2, 136, 209, 0.15);
+}
+
+.retry-btn:hover {
+    background: #0288d1;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(2, 136, 209, 0.25);
+}
+
+/* SVG Filter for Gooey Effect (Hidden but needed) */
+.goo-filter {
+    position: absolute;
+    visibility: hidden;
+}

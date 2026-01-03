@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthContext';
 import API_URL from '../config';
 import { useToast } from '../context/ToastContext';
 import './Profile.css';
+import '../components/Loader.css'; // Import the new loader styles
 import { User, Package, Settings, CreditCard, Heart, LogOut, ChevronRight, LayoutDashboard, Trash2, Edit } from 'lucide-react';
 
 const Profile = ({ addToCart }) => {
@@ -269,41 +270,40 @@ const Profile = ({ addToCart }) => {
         navigate('/');
     };
 
+
+
     if (loading || !user) {
         return (
-            <div className="profile-container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', gap: '20px' }}>
-                <div className="loading-spinner" style={{
-                    width: '40px',
-                    height: '40px',
-                    border: '3px solid #f3f3f3',
-                    borderTop: '3px solid #2874f0',
-                    borderRadius: '50%',
-                    animation: 'spin 1s linear infinite'
-                }}></div>
-                <div style={{ fontSize: '18px', fontWeight: '500' }}>Loading Dashboard...</div>
-                <div style={{ color: '#666', fontSize: '14px', textAlign: 'center', maxWidth: '300px' }}>
-                    Connecting to server. If this takes longer than 30s, the server might be waking up (Free Tier).
+            <div className="profile-container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '80vh', gap: '10px' }}>
+                <div className="loader-container">
+                    <div className="drop"></div>
+                    <div className="wave"></div>
                 </div>
+
+                <div className="loading-text">Aqua Vita</div>
+
+                <div className="loading-subtext">
+                    Pure Water, Pure Life.<br />
+                    <span style={{ fontSize: '12px', opacity: 0.8 }}>Connecting to server... (This may take ~30s for dry run)</span>
+                </div>
+
                 <button
+                    className="retry-btn"
                     onClick={() => { localStorage.removeItem('token'); window.location.href = '/login'; }}
-                    style={{
-                        marginTop: '20px',
-                        padding: '8px 16px',
-                        background: '#efefef',
-                        border: '1px solid #ddd',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        fontSize: '14px'
-                    }}
                 >
-                    Taking too long? Click to Login
+                    Taking too long? Re-Login
                 </button>
-                <style>{`
-                    @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                    }
-                `}</style>
+
+                {/* SVG Filter for Blob Effect */}
+                <svg className="goo-filter">
+                    <defs>
+                        <filter id="goo">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                            <feBlend in="SourceGraphic" in2="goo" />
+                        </filter>
+                    </defs>
+                </svg>
             </div>
         );
     }
