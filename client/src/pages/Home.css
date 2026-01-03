@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: flex-start;
     text-align: left;
-    padding: 0 8%;
+    padding: 0 5%;
     /* Balanced padding */
     position: relative;
     height: 90vh;
@@ -506,8 +506,9 @@
     .hero-section {
         padding: 0 1rem;
         height: auto;
-        min-height: 80vh;
+        min-height: 70vh;
         align-items: center;
+        text-align: center;
     }
 
     .hero-content {

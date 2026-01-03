@@ -131,7 +131,7 @@
     min-height: 500px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
     border-radius: 2px;
-    padding: 24px 32px;
+    padding: 24px;
 }
 
 .main-header {
@@ -254,6 +254,20 @@
 
     .profile-sidebar.mobile-expanded .nav-items {
         display: flex;
+    }
+
+    .input-row {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .profile-main-area {
+        min-height: auto;
+        padding: 16px;
+    }
+
+    .profile-container {
+        padding: 80px 12px 24px;
     }
 }
 

@@ -37,7 +37,7 @@
 }
 
 .shop-title {
-    font-size: 5rem;
+    font-size: 3rem;
     background: linear-gradient(to right, #DFB865, #FFF3C4, #DFB865);
     -webkit-background-clip: text;
     background-clip: text;
@@ -59,7 +59,7 @@
 
 .products-showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 8rem;
     padding: 2rem;
     max-width: 1400px;
@@ -276,6 +276,11 @@
 
     .products-showcase {
         grid-template-columns: 1fr;
-        gap: 5rem;
+        gap: 4rem;
+        padding: 1rem;
+    }
+
+    .product-image-wrapper {
+        min-height: 400px;
     }
 }
