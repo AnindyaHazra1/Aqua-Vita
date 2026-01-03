@@ -284,6 +284,20 @@ const Profile = ({ addToCart }) => {
                 <div style={{ color: '#666', fontSize: '14px', textAlign: 'center', maxWidth: '300px' }}>
                     Connecting to server. If this takes longer than 30s, the server might be waking up (Free Tier).
                 </div>
+                <button
+                    onClick={() => { localStorage.removeItem('token'); window.location.href = '/login'; }}
+                    style={{
+                        marginTop: '20px',
+                        padding: '8px 16px',
+                        background: '#efefef',
+                        border: '1px solid #ddd',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        fontSize: '14px'
+                    }}
+                >
+                    Taking too long? Click to Login
+                </button>
                 <style>{`
                     @keyframes spin {
                         0% { transform: rotate(0deg); }
