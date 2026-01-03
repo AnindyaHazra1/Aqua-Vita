@@ -4,7 +4,7 @@ Aqua Vita is a modern, premium e-commerce platform dedicated to delivering the f
 
 ## 🚀 Experience the Live App
 
-Visit the live application: **[Aqua Vita](https://aqua-vita-psi.vercel.app/)**
+Visit the live application: **[Aqua Vita](LINK_TO_YOUR_DEPLOYED_APP)**
 
 **Test Credentials:**
 - **Email:** `demo@aquavita.com`
