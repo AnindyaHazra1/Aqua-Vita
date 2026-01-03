@@ -4,7 +4,7 @@ Aqua Vita is a modern, premium e-commerce platform dedicated to delivering the f
 
 ## 🚀 Experience the Live App
 
-Visit the live application: **[Aqua Vita](LINK_TO_YOUR_DEPLOYED_APP)**
+Visit the live application: **[Aqua Vita](https://example.com)** <!-- Replace with your actual deployment URL -->
 
 **Test Credentials:**
 - **Email:** `demo@aquavita.com`
