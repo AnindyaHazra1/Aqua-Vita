@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import API_URL from '../config';
 import { useToast } from '../context/ToastContext';
@@ -138,12 +138,10 @@ const Profile = ({ addToCart }) => {
         }
     }, [user]);
 
-    // Redirect if not authenticated
-    useEffect(() => {
-        if (!loading && !isAuthenticated) {
-            navigate('/login');
-        }
-    }, [loading, isAuthenticated, navigate]);
+    // If auth failed, redirect immediately
+    if (!loading && !isAuthenticated) {
+        return <Navigate to="/login" replace />;
+    }
 
     // Fetch Orders when tab changes
     useEffect(() => {
