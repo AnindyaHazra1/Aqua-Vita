@@ -273,8 +273,25 @@ const Profile = ({ addToCart }) => {
 
     if (loading || !user) {
         return (
-            <div className="profile-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <div>Loading Dashboard...</div>
+            <div className="profile-container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '60vh', gap: '20px' }}>
+                <div className="loading-spinner" style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid #f3f3f3',
+                    borderTop: '3px solid #2874f0',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                }}></div>
+                <div style={{ fontSize: '18px', fontWeight: '500' }}>Loading Dashboard...</div>
+                <div style={{ color: '#666', fontSize: '14px', textAlign: 'center', maxWidth: '300px' }}>
+                    Connecting to server. If this takes longer than 30s, the server might be waking up (Free Tier).
+                </div>
+                <style>{`
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                `}</style>
             </div>
         );
     }
