@@ -9,7 +9,6 @@ Visit the live application: **[Aqua Vita](LINK_TO_YOUR_DEPLOYED_APP)**
 **Test Credentials:**
 - **Email:** `demo@aquavita.com`
 - **Password:** `demo123`
-
 ---
 
 ## ✨ Features
