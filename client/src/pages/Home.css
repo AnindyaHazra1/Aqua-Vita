@@ -488,6 +488,7 @@
 }
 
 /* Responsive */
+/* Responsive */
 @media (max-width: 1024px) {
     .hero-title {
         font-size: 3rem;
@@ -506,51 +507,99 @@
     .hero-section {
         padding: 0 1rem;
         height: auto;
-        min-height: 70vh;
+        min-height: 85vh;
+        /* Taller hero on mobile for impact */
         align-items: center;
         text-align: center;
     }
 
     .hero-content {
-        padding: 2rem 1rem;
+        padding: 4rem 1rem;
         text-align: center;
         max-width: 100%;
         margin: 0 auto;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        /* Fluid typography */
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
     }
 
     .hero-subtitle {
         border-left: none;
-        /* Remove border for centered text */
         padding-left: 0;
         margin-left: auto;
         margin-right: auto;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        /* Scaled down */
+        margin-bottom: 3rem;
     }
 
     .feature-row,
     .feature-row.reverse {
         flex-direction: column;
-        gap: 2rem;
+        gap: 2.5rem;
         text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 6rem;
+        /* More breathing room between items */
     }
 
     .feature-icon-wrapper {
         justify-content: center;
-        /* Center on mobile */
-        margin: 0 auto 1.5rem;
+        margin: 0 auto 1rem;
     }
 
     .feature-image {
         width: 100%;
         height: 300px;
+        /* Consistent height */
+    }
+
+    .feature-title {
+        font-size: 1.8rem;
     }
 
     .impact-grid {
         grid-template-columns: 1fr;
+        /* Stack vertically */
+        gap: 1.5rem;
+        padding: 0 1.5rem;
+    }
+
+    .impact-item {
+        padding: 1.5rem;
+    }
+
+    .why-us-grid {
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .newsletter-content h2 {
+        font-size: 2rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        border-bottom: none;
         gap: 1rem;
+    }
+
+    .newsletter-form input {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        padding-bottom: 1rem;
+    }
+
+    .newsletter-form button {
+        background: rgba(197, 160, 89, 0.1);
+        padding: 1rem;
+        border-radius: 4px;
+        width: 100%;
     }
 }

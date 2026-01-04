@@ -107,10 +107,16 @@
 }
 
 @media (max-width: 900px) {
+    .footer {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+
     .footer-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 3.5rem;
+        /* More separation between sections */
         text-align: center;
+        padding-bottom: 2rem;
     }
 
     .footer-brand,
@@ -120,9 +126,39 @@
 
     .brand-col {
         padding-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        /* Separator */
+        padding-bottom: 2rem;
+        margin-bottom: -1rem;
+        /* Adjust for grid gap */
     }
 
     .footer-desc {
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+
+    .footer-links li {
+        margin-bottom: 1rem;
+        /* Easy to tap */
+    }
+
+    .footer-links a {
+        font-size: 1.1rem;
+        /* Larger text */
+        padding: 0.5rem;
+        /* Touch padding */
+        display: inline-block;
+    }
+
+    .social-link {
+        width: 48px;
+        /* Larger icons */
+        height: 48px;
+    }
+
+    .newsletter-text {
+        max-width: 300px;
         margin: 0 auto;
     }
 }

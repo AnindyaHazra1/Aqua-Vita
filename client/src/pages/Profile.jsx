@@ -10,6 +10,7 @@ import { User, Package, Settings, CreditCard, Heart, LogOut, ChevronRight, Layou
 const Profile = ({ addToCart }) => {
     const authContext = useContext(AuthContext);
     const { user, isAuthenticated, loading, logout, loadUser } = authContext; // Ensure loadUser is available
+    // const loading = true; const user = null; const { logout } = authContext; // FORCED LOADING STATE FOR SCREENSHOT
     const { showToast } = useToast();
     const navigate = useNavigate();
 
