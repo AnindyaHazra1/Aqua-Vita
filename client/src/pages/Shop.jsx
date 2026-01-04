@@ -4,6 +4,7 @@ import AuthContext from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import API_URL from '../config';
 import './Shop.css';
+import '../components/Loader.css';
 
 const Shop = ({ addToCart }) => {
     const [products, setProducts] = useState([]);
@@ -80,10 +81,23 @@ const Shop = ({ addToCart }) => {
 
     if (loading) {
         return (
-            <div className="shop-container">
-                <div className="section-container" style={{ textAlign: 'center', marginTop: '4rem' }}>
-                    <p>Loading premium collection...</p>
+            <div className="shop-container" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+                <div className="loader-container">
+                    <div className="drop"></div>
+                    <div className="wave"></div>
                 </div>
+                <div className="loading-text">Aqua Vita</div>
+                <div className="loading-subtext">Curating the collection...</div>
+
+                <svg className="goo-filter">
+                    <defs>
+                        <filter id="goo">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+                            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+                            <feBlend in="SourceGraphic" in2="goo" />
+                        </filter>
+                    </defs>
+                </svg>
             </div>
         );
     }
@@ -91,8 +105,9 @@ const Shop = ({ addToCart }) => {
     if (error) {
         return (
             <div className="shop-container">
-                <div className="section-container" style={{ textAlign: 'center', marginTop: '4rem', color: 'red' }}>
-                    <p>{error}</p>
+                <div className="section-container" style={{ textAlign: 'center', marginTop: '4rem', color: '#ff6b6b' }}>
+                    <p style={{ fontSize: '1.2rem' }}>{error}</p>
+                    <button className="btn-primary" onClick={() => window.location.reload()} style={{ marginTop: '1rem' }}>Retry</button>
                 </div>
             </div>
         );
